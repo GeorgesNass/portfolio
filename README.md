@@ -38,7 +38,7 @@ Applied ML / MLOps / Medical NLP / Agentic LLM.
 
 * **Monitoring API Analytics** → [link](https://github.com/GeorgesNass/monitoring-api-analytics)
 
-  End-to-end monitoring from logs into structured analytics & dashboards (Cloud Logging, BigQuery, Looker Studio/Grafana).
+  Full monitoring from logs into structured analytics-dashboards (Cloud Logging, BigQuery, Looker Studio/Grafana).
 
 * **MLOps Certifications** → [link](https://github.com/GeorgesNass/mlops-certifications)
 
