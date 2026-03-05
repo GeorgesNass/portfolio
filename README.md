@@ -22,11 +22,11 @@ Applied ML / MLOps / Medical NLP / Agentic LLM.
 
   | Name | Short description | Link |
   |------|------------------|------|
-  | `autonomous-ai-platform` | Complete **agentic LLM platform** (local models, vLLM GPU inference, RAG pipelines, Text-to-SQL and Airflow orchestration). | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/autonomous-ai-platform) |
-  | `llm-proxy-gateway` | Unified gateway layer to **orchestrate multiple LLM providers** (OpenAI, Gemini, xAI) with completion, cost simulation and evaluation. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/llm-proxy-gateway) |
-  | `rag-drive-gcp` | End-to-end **RAG architecture on Google Cloud** (Drive ingestion, OCR processing, embedding generation and interactive chat interface). | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/rag-drive-gcp) |
-  | `local-finetuning` | Local LLM **fine-tuning pipelines using LoRA / QLoRA** designed for domain adaptation and deterministic inference. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/local-finetuning) |
-  | `local-quantization` | Local **LLM quantization techniques (GGUF, GPTQ, AWQ, ONNX)** for efficient CPU/GPU inference. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/local-quantization) |
+  | autonomous-ai-platform | Complete **agentic LLM platform** (local models, vLLM GPU inference, RAG pipelines, Text-to-SQL and Airflow orchestration). | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/autonomous-ai-platform) |
+  | llm-proxy-gateway | Unified gateway layer to **orchestrate multiple LLM providers** (OpenAI, Gemini, xAI) with completion, cost simulation and evaluation. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/llm-proxy-gateway) |
+  | rag-drive-gcp | End-to-end **RAG architecture on Google Cloud** (Drive ingestion, OCR processing, embedding generation and interactive chat interface). | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/rag-drive-gcp) |
+  | local-finetuning | Local LLM **fine-tuning pipelines using LoRA / QLoRA** designed for domain adaptation and deterministic inference. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/local-finetuning) |
+  | local-quantization | Local **LLM quantization techniques (GGUF, GPTQ, AWQ, ONNX)** for efficient CPU/GPU inference. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/local-quantization) |
 
 * **Traffic prediction** → [link](https://github.com/Traffic-forecasting-project/traffic_prediction)
 
