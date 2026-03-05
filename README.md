@@ -30,7 +30,7 @@ Applied ML / MLOps / Medical NLP / Agentic LLM.
 
 * **Traffic prediction** → [link](https://github.com/Traffic-forecasting-project/traffic_prediction)
 
-  MLOps pipeline to forecast road traffic congestion using real-time traffic data from TomTom API combined with weather data from OpenWeather.
+  MLOps pipeline to forecast road traffic congestion using real-time data (TomTom combined with OpenWeather APIs).
 
 * **Data deduplication** → [link](https://github.com/GeorgesNass/data-deduplication)
 
