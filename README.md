@@ -34,7 +34,7 @@ Applied ML / MLOps / Medical NLP / Agentic LLM.
 
 * **Data deduplication** → [link](https://github.com/GeorgesNass/data-deduplication)
 
-  Fuzzy record resolution with blocking strategies, similarity metrics and supervised ML for clustering).
+  Fuzzy record resolution with blocking strategies, similarity metrics and supervised ML for clustering.
 
 * **Monitoring API Analytics** → [link](https://github.com/GeorgesNass/monitoring-api-analytics)
 
