@@ -30,15 +30,15 @@ Applied ML / MLOps / Medical NLP / Agentic LLM.
 
 * **Traffic prediction** → [link](https://github.com/Traffic-forecasting-project/traffic_prediction)
 
-  MLOps pipeline to forecast road traffic congestion using real-time data (TomTom combined with OpenWeather APIs).
+  MLOps pipeline to forecast road traffic congestion using real-time data (TomTom with OpenWeather APIs).
 
 * **Data deduplication** → [link](https://github.com/GeorgesNass/data-deduplication)
 
-  Fuzzy record resolution combining blocking strategies, similarity metrics and supervised ML to detect and cluster duplicate records across large datasets.
+  Fuzzy record resolution with blocking strategies, similarity metrics and supervised ML for clustering).
 
 * **Monitoring API Analytics** → [link](https://github.com/GeorgesNass/monitoring-api-analytics)
 
-  End-to-end monitoring pipeline transforming Cloud Logging API logs into structured analytics and dashboards using BigQuery, Looker Studio or Grafana.
+  End-to-end monitoring pipeline from logs into structured analytics and dashboards (Cloud Logging API, BigQuery, Looker Studio/Grafana).
 
 * **MLOps Certifications** → [link](https://github.com/GeorgesNass/mlops-certifications)
 
