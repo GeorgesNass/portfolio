@@ -10,23 +10,23 @@ Applied ML / MLOps / Medical NLP / Agentic LLM.
 
 * **Medical NLP suite** → [link](https://github.com/GeorgesNass/medical-nlp)
 
-  | Name                    | Short description                                                                                                                                      | Link                                                                                 |
-  | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-  | doc-classification      | Semantic similarity pipeline for **multi-label classification of medical documents** (discharge reports, prescriptions, laboratory results etc.).       | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/doc-classification)      |
-  | icd10-prediction        | End-to-end ML pipeline predicting the **primary ICD10 diagnosis code** from  clinical text documents.                                                  | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/icd10-prediction)        |
-  | mesh-semantic-expansion | NLP pipeline exploring the **MeSH ontology** to detect synonyms, abbreviations and candidate terms for vocabulary enrichment.                          | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/mesh-semantic-expansion) |
-  | clinical-ner            | **Clinical Named Entity Recognition pipeline** with dictionary extraction, concept normalization, negation detection and temporality analysis.         | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/clinical-ner)            |
-  | lab-clustering          | Unsupervised ML pipeline transforming raw laboratory reports into **structured datasets and clustering them for analytical insights**.                 | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/lab-clustering)          |
+  | Name | Short description | Link |
+  |------|------------------|------|
+  | `doc-classification` | Semantic similarity pipeline for **multi-label classification of medical documents** (discharge reports, prescriptions, laboratory results etc.). | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/doc-classification) |
+  | `icd10-prediction` | End-to-end ML pipeline predicting the **primary ICD10 diagnosis code** from clinical text documents. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/icd10-prediction) |
+  | `mesh-semantic-expansion` | NLP pipeline exploring the **MeSH ontology** to detect synonyms, abbreviations and candidate terms for vocabulary enrichment. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/mesh-semantic-expansion) |
+  | `clinical-ner` | **Clinical Named Entity Recognition pipeline** with dictionary extraction, concept normalization, negation detection and temporality analysis. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/clinical-ner) |
+  | `lab-clustering` | Unsupervised ML pipeline transforming raw laboratory reports into **structured datasets and clustering them for analytical insights**. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/lab-clustering) |
 
 * **Agentic LLM suite** → [link](https://github.com/GeorgesNass/agentic-llm)
 
-  | Name                   | Short description                                                                                                                                 | Link                                                                                |
-  | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-  | autonomous-ai-platform | Complete **agentic LLM platform** (local models, vLLM GPU inference, RAG pipelines, Text-to-SQL and Airflow orchestration).                  	   | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/autonomous-ai-platform) |
-  | llm-proxy-gateway      | Unified gateway layer to **orchestrate multiple LLM providers** (OpenAI, Gemini, xAI) with completion, cost simulation and evaluation).           | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/llm-proxy-gateway)      |
-  | rag-drive-gcp          | End-to-end **RAG architecture on Google Cloud** (Drive ingestion, OCR processing, embedding generation and interactive chat interface).           | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/rag-drive-gcp)          |
-  | local-finetuning       | Local LLM **fine-tuning pipelines using LoRA / QLoRA** designed for domain adaptation and deterministic inference.                                | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/local-finetuning)       |
-  | local-quantization     | Local **LLM quantization techniques (GGUF, GPTQ, AWQ, ONNX)** for efficient CPU/GPU inference.                                                    | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/local-quantization)     |
+  | Name | Short description | Link |
+  |------|------------------|------|
+  | `autonomous-ai-platform` | Complete **agentic LLM platform** (local models, vLLM GPU inference, RAG pipelines, Text-to-SQL and Airflow orchestration). | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/autonomous-ai-platform) |
+  | `llm-proxy-gateway` | Unified gateway layer to **orchestrate multiple LLM providers** (OpenAI, Gemini, xAI) with completion, cost simulation and evaluation. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/llm-proxy-gateway) |
+  | `rag-drive-gcp` | End-to-end **RAG architecture on Google Cloud** (Drive ingestion, OCR processing, embedding generation and interactive chat interface). | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/rag-drive-gcp) |
+  | `local-finetuning` | Local LLM **fine-tuning pipelines using LoRA / QLoRA** designed for domain adaptation and deterministic inference. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/local-finetuning) |
+  | `local-quantization` | Local **LLM quantization techniques (GGUF, GPTQ, AWQ, ONNX)** for efficient CPU/GPU inference. | [link](https://github.com/GeorgesNass/agentic-llm/tree/main/local-quantization) |
 
 * **Traffic prediction** → [link](https://github.com/Traffic-forecasting-project/traffic_prediction)
 
