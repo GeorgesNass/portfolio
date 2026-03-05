@@ -12,11 +12,11 @@ Applied ML / MLOps / Medical NLP / Agentic LLM.
 
   | Name | Short description | Link |
   |------|------------------|------|
-  | `doc-classification` | Semantic similarity pipeline for **multi-label classification of medical documents** (discharge reports, prescriptions, laboratory results etc.). | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/doc-classification) |
-  | `icd10-prediction` | End-to-end ML pipeline predicting the **primary ICD10 diagnosis code** from clinical text documents. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/icd10-prediction) |
-  | `mesh-semantic-expansion` | NLP pipeline exploring the **MeSH ontology** to detect synonyms, abbreviations and candidate terms for vocabulary enrichment. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/mesh-semantic-expansion) |
-  | `clinical-ner` | **Clinical Named Entity Recognition pipeline** with dictionary extraction, concept normalization, negation detection and temporality analysis. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/clinical-ner) |
-  | `lab-clustering` | Unsupervised ML pipeline transforming raw laboratory reports into **structured datasets and clustering them for analytical insights**. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/lab-clustering) |
+  | doc-classification&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Semantic similarity pipeline for **multi-label classification of medical documents** (discharge reports, prescriptions, laboratory results etc.). | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/doc-classification) |
+  | icd10-prediction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | End-to-end ML pipeline predicting the **primary ICD10 diagnosis code** from clinical text documents. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/icd10-prediction) |
+  | mesh-semantic-expansion&nbsp;&nbsp; | NLP pipeline exploring the **MeSH ontology** to detect synonyms, abbreviations and candidate terms for vocabulary enrichment. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/mesh-semantic-expansion) |
+  | clinical-ner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Clinical Named Entity Recognition pipeline** with dictionary extraction, concept normalization, negation detection and temporality analysis. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/clinical-ner) |
+  | lab-clustering&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Unsupervised ML pipeline transforming raw laboratory reports into **structured datasets and clustering them for analytical insights**. | [link](https://github.com/GeorgesNass/medical-nlp/tree/main/lab-clustering) |
 
 * **Agentic LLM suite** → [link](https://github.com/GeorgesNass/agentic-llm)
 
