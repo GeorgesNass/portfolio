@@ -1,6 +1,6 @@
 # Georges Nass — Portfolio
 
-Senior Applied ML & MLOps Engineer building production-grade AI systems (Medical NLP, Agentic LLM, scalable pipelines).
+Applied ML & MLOps Engineer building production-grade AI systems (Medical NLP, Agentic LLM, scalable pipelines).
 
 ## Featured
 
