@@ -25,15 +25,27 @@ h1 {
 }
 
 table {
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     min-width: 1200px;
 }
 
 th, td {
     padding: 10px;
-    border: 1px solid #30363d;
+    border-right: 1px solid #30363d;
+    border-bottom: 1px solid #30363d;
     text-align: center;
     white-space: nowrap;
+    background: #0d1117;
+}
+
+/* Top border + left border */
+tr:first-child th {
+    border-top: 1px solid #30363d;
+}
+th:first-child,
+td:first-child {
+    border-left: 1px solid #30363d;
 }
 
 /* Sticky header */
@@ -41,28 +53,50 @@ thead th {
     position: sticky;
     top: 0;
     background: #161b22;
-    z-index: 3;
+    z-index: 4;
 }
 
 /* First column */
-td:first-child, th:first-child {
+th:first-child,
+td:first-child {
     position: sticky;
     left: 0;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
     background: #161b22;
-    z-index: 2;
+    z-index: 3;
+    text-align: left;
 }
 
 /* Second column */
-td:nth-child(2), th:nth-child(2) {
+th:nth-child(2),
+td:nth-child(2) {
     position: sticky;
     left: 150px;
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
     background: #161b22;
-    z-index: 2;
+    z-index: 3;
+    text-align: left;
+}
+
+/* Top-left corner priority */
+thead th:first-child,
+thead th:nth-child(2) {
+    z-index: 5;
 }
 
 /* Hover effect */
-tr:hover td {
+tbody tr:hover td {
     background: #21262d;
+}
+
+/* Keep sticky columns darker on hover */
+tbody tr:hover td:first-child,
+tbody tr:hover td:nth-child(2) {
+    background: #1b222c;
 }
 </style>
 
