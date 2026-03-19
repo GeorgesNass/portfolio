@@ -64,10 +64,9 @@ Some repositories are private (exams / compliance):
 
 ## Engineering & MLOps stack across projects
 
-An interactive version with a sticky header and frozen columns is available here:
+For the best reading experience with frozen columns and sticky header, view the interactive version here:
 
-🔎 **[View the interactive stack matrix](https://georgesnass.github.io/portfolio/stack-matrix.html)**
-
+➡️ **[Open the interactive stack matrix](https://georgesnass.github.io/portfolio/stack-matrix.html)**
 
 ✔ implemented  
 ⚡ GPU strongly recommended  
