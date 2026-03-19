@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Engineering & MLOps Stack</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #0d1117;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    overflow: auto;
+    max-height: 80vh;
+    border: 1px solid #30363d;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 1200px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #30363d;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Sticky header */
+thead th {
+    position: sticky;
+    top: 0;
+    background: #161b22;
+    z-index: 3;
+}
+
+/* First column */
+td:first-child, th:first-child {
+    position: sticky;
+    left: 0;
+    background: #161b22;
+    z-index: 2;
+}
+
+/* Second column */
+td:nth-child(2), th:nth-child(2) {
+    position: sticky;
+    left: 150px;
+    background: #161b22;
+    z-index: 2;
+}
+
+/* Hover effect */
+tr:hover td {
+    background: #21262d;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Engineering & MLOps Stack</h1>
+
+<div class="table-container">
+<table>
+
+<thead>
+<tr>
+<th>Category</th>
+<th>Tool</th>
+<th>Project 1</th>
+<th>Project 2</th>
+<th>Project 3</th>
+<th>Project 4</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Data</td>
+<td>Pandas</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+
+<tr>
+<td>ML</td>
+<td>Scikit-learn</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+
+<tr>
+<td>MLOps</td>
+<td>MLflow</td>
+<td>✔️</td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+
+<tr>
+<td>API</td>
+<td>FastAPI</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+<td>✔️</td>
+</tr>
+
+<tr>
+<td>Container</td>
+<td>Docker</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+</body>
+</html>
