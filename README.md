@@ -70,7 +70,7 @@ For the best reading experience with frozen columns and sticky header, view the 
 
 ## Engineering & MLOps stack across projects
 
-[![Engineering & MLOps Stack](./assets/stack-matrix-preview.png)](https://georgesnass.github.io/portfolio/stack-matrix.html)
+![Engineering & MLOps Stack](./assets/stack-matrix-preview.png)
 
 ✔ implemented  
 ⚡ GPU strongly recommended  
