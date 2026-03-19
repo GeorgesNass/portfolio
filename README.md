@@ -64,13 +64,42 @@ Some repositories are private (exams / compliance):
 
 ## Engineering & MLOps stack across projects
 
-For the best reading experience with frozen columns and sticky header, view the interactive version here:
-
 ➡️ **[Open the interactive stack matrix](https://georgesnass.github.io/portfolio/stack-matrix.html)**
 
-## Engineering & MLOps stack across projects
-
-![Engineering & MLOps Stack](./assets/stack-matrix-preview.png)
+| Feature | Stack&nbsp;/&nbsp;Tools | OCR | doc&#8209;classification | icd10&#8209;prediction | mesh&#8209;semantic&#8209;expansion | clinical&#8209;ner | lab&#8209;clustering | autonomous&#8209;ai&#8209;platform | llm&#8209;proxy&#8209;gateway | rag&#8209;drive&#8209;gcp | local&#8209;finetuning | local&#8209;quantization | traffic&#8209;prediction | data&#8209;deduplication | monitoring&#8209;api&#8209;analytics |
+|:--|:--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Containerization | Docker | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Container&nbsp;orchestration | Kubernetes | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| GPU&nbsp;acceleration | CUDA&nbsp;/&nbsp;vLLM | ✔ | ✔ | ✔ | ✖ | ✔ | ✖ | ✔⚡ | ✖ | ✔ | ✔⚡ | ✔ | ✖ | ✖ | ✖ |
+| Secrets&nbsp;management | .env&nbsp;/&nbsp;vault | ✔ | ✔ | ✔ | ✖ | ✔ | ✔ | ✔ | ✔ | ✔ | ✖ | ✖ | ✔ | ✔ | ✔ |
+| API&nbsp;security | JWT&nbsp;/&nbsp;API&nbsp;keys | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ | ✖ | 🟡 | 🟡 | 🟡 |
+| CI/CD&nbsp;pipelines | GitHub&nbsp;Actions&nbsp;/&nbsp;GitLab&nbsp;CI | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Orchestration&nbsp;pipelines | Airflow | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Batch&nbsp;inference&nbsp;pipelines | Airflow&nbsp;/&nbsp;Pandas&nbsp;/&nbsp;PySpark | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| Streaming&nbsp;/&nbsp;real&#8209;time&nbsp;inference | Kafka&nbsp;/&nbsp;FastAPI&nbsp;/&nbsp;Redis | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Auto&#8209;retraining&nbsp;pipelines | Airflow&nbsp;/&nbsp;MLflow&nbsp;/&nbsp;drift&nbsp;triggers | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| Experiment&nbsp;tracking | MLflow | ✖ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✔ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ |
+| Model&nbsp;registry | MLflow&nbsp;Model&nbsp;Registry | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| Data&nbsp;versioning | DVC | ✖ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ | 🟡 | 🟡 | ✖ | 🟡 | 🟡 | ✖ |
+| Data&nbsp;lineage&nbsp;/&nbsp;provenance | DVC&nbsp;/&nbsp;MLflow | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| Feature&nbsp;store | Feast&nbsp;/&nbsp;Redis&nbsp;/&nbsp;BigQuery | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| Object&nbsp;models | Pydantic&nbsp;/&nbsp;dataclasses | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Config&nbsp;structuring | Pydantic&nbsp;/&nbsp;dataclasses | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Error&nbsp;handling | exceptions&nbsp;/&nbsp;guards | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Structured&nbsp;logging | Python&nbsp;logging | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Testing | pytest | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Data&nbsp;validation | Pydantic&nbsp;/&nbsp;Pandera | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✖ | ✔ | ✔ | ✔ |
+| Data&nbsp;consistency | cross&#8209;source&nbsp;/&nbsp;business&nbsp;rules | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ | 🟡 | 🟡 | 🟡 |
+| Anomaly&nbsp;detection | z&#8209;score&nbsp;/&nbsp;IQR | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ | 🟡 | 🟡 | 🟡 |
+| Data&nbsp;drift&nbsp;detection | Evidently | ✖ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✖ | ✔ | ✔ | ✖ | ✔ | ✔ | ✔ |
+| Data&nbsp;&amp;&nbsp;model&nbsp;drift&nbsp;monitoring | Evidently&nbsp;/&nbsp;metrics | ✖ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ | 🟡 | 🟡 | ✖ | 🟡 | 🟡 | 🟡 |
+| Model&nbsp;validation&nbsp;(offline) | F1&nbsp;/&nbsp;RMSE&nbsp;/&nbsp;precision&nbsp;/&nbsp;recall | ✖ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ |
+| Model&nbsp;validation&nbsp;(business) | domain&nbsp;/&nbsp;stakeholder&nbsp;checks | ✖ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ | 🟡 | 🟡 | 🟡 |
+| Overfitting&nbsp;checks | CV&nbsp;/&nbsp;holdout&nbsp;/&nbsp;regularization | ✖ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✖ |
+| End&#8209;to&#8209;end&nbsp;pipeline&nbsp;validation | source&nbsp;→&nbsp;API&nbsp;/&nbsp;dashboard | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✔ |
+| Monitoring&nbsp;&amp;&nbsp;observability | Prometheus&nbsp;/&nbsp;Grafana | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | ✔ |
+| Alerting&nbsp;&amp;&nbsp;incident&nbsp;response | Prometheus&nbsp;/&nbsp;Alertmanager&nbsp;/&nbsp;Grafana | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| Model&nbsp;explainability | SHAP&nbsp;/&nbsp;LIME&nbsp;/&nbsp;sklearn | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 
 ✔ implemented  
 ⚡ GPU strongly recommended  
