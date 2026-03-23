@@ -64,7 +64,7 @@ Some repositories are private (exams / compliance):
 
 ## Engineering & MLOps stack across projects
 
-This section provides a comprehensive view of the ML lifecycle: INFRA → DATA → PIPELINES → ML → VALIDATION → OBSERVABILITY.
+Comprehensive view of the ML lifecycle: INFRA → DATA → PIPELINES → ML → VALIDATION → OBSERVABILITY.
 
 ➡️ **[Open the interactive stack matrix](https://georgesnass.github.io/portfolio/stack-matrix.html)**
 
