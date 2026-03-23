@@ -1,954 +1,1225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Engineering & MLOps Stack Across Projects</title>
-  <style>
-    :root {
-      --bg: #0d1117;
-      --panel: #111827;
-      --panel-2: #161b22;
-      --panel-3: #1f2937;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #9da7b3;
-      --ok-bg: #0f5132;
-      --ok-text: #d1fae5;
-      --todo-bg: #5b4a14;
-      --todo-text: #fef3c7;
-      --no-bg: #5a1e24;
-      --no-text: #fee2e2;
-      --accent: #58a6ff;
-      --shadow: rgba(0, 0, 0, 0.35);
-    }
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Engineering & MLOps Stack Across Projects</title>
+	<style>
+		:root {
+			--bg: #0d1117;
+			--panel: #111827;
+			--panel-2: #161b22;
+			--panel-3: #1f2937;
+			--border: #30363d;
+			--text: #e6edf3;
+			--muted: #9da7b3;
+			--ok-bg: #0f5132;
+			--ok-text: #d1fae5;
+			--todo-bg: #5b4a14;
+			--todo-text: #fef3c7;
+			--no-bg: #5a1e24;
+			--no-text: #fee2e2;
+			--gpu-bg: #1d4ed8;
+			--gpu-text: #dbeafe;
+			--accent: #58a6ff;
+			--shadow: rgba(0, 0, 0, 0.35);
+		}
 
-    * {
-      box-sizing: border-box;
-    }
+		* {
+			box-sizing: border-box;
+		}
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-    }
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			background: var(--bg);
+			color: var(--text);
+			font-family: Arial, Helvetica, sans-serif;
+		}
 
-    body {
-      padding: 24px;
-    }
+		body {
+			padding: 24px;
+		}
 
-    .page {
-      max-width: 100%;
-      margin: 0 auto;
-    }
+		.page {
+			max-width: 100%;
+			margin: 0 auto;
+		}
 
-    .header {
-      margin-bottom: 18px;
-    }
+		.header {
+			margin-bottom: 18px;
+		}
 
-    .title {
-      margin: 0 0 8px 0;
-      font-size: 30px;
-      line-height: 1.2;
-      font-weight: 700;
-    }
+		.title {
+			margin: 0 0 8px 0;
+			font-size: 30px;
+			line-height: 1.2;
+			font-weight: 700;
+		}
 
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.5;
-    }
+		.subtitle {
+			margin: 0;
+			color: var(--muted);
+			font-size: 15px;
+			line-height: 1.5;
+		}
 
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 18px 0 18px 0;
-    }
+		.legend {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin: 18px 0 18px 0;
+		}
 
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 13px;
-      color: var(--text);
-    }
+		.legend-item {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			border: 1px solid var(--border);
+			background: var(--panel);
+			border-radius: 999px;
+			padding: 8px 12px;
+			font-size: 13px;
+			color: var(--text);
+		}
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 32px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 13px;
-      line-height: 1;
-    }
+		.badge {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 32px;
+			padding: 4px 8px;
+			border-radius: 999px;
+			font-weight: 700;
+			font-size: 13px;
+			line-height: 1;
+		}
 
-    .badge-ok {
-      background: var(--ok-bg);
-      color: var(--ok-text);
-    }
+		.badge-ok {
+			background: var(--ok-bg);
+			color: var(--ok-text);
+		}
 
-    .badge-todo {
-      background: var(--todo-bg);
-      color: var(--todo-text);
-    }
+		.badge-todo {
+			background: var(--todo-bg);
+			color: var(--todo-text);
+		}
 
-    .badge-no {
-      background: var(--no-bg);
-      color: var(--no-text);
-    }
+		.badge-no {
+			background: var(--no-bg);
+			color: var(--no-text);
+		}
 
-    .badge-gpu {
-      background: #1d4ed8;
-      color: #dbeafe;
-    }
+		.badge-gpu {
+			background: var(--gpu-bg);
+			color: var(--gpu-text);
+		}
 
-    .table-shell {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: auto;
-      max-height: 78vh;
-      background: var(--panel);
-      box-shadow: 0 10px 30px var(--shadow);
-    }
+		.table-shell {
+			border: 1px solid var(--border);
+			border-radius: 14px;
+			overflow: auto;
+			max-height: 78vh;
+			background: var(--panel);
+			box-shadow: 0 10px 30px var(--shadow);
+		}
 
-    table {
-      border-collapse: separate;
-      border-spacing: 0;
-      min-width: 2800px;
-      width: max-content;
-      background: var(--panel);
-    }
+		table {
+			border-collapse: separate;
+			border-spacing: 0;
+			min-width: 3300px;
+			width: max-content;
+			background: var(--panel);
+		}
 
-    thead th {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      background: var(--panel-2);
-      color: var(--text);
-      font-weight: 700;
-      font-size: 13px;
-      text-align: center;
-      vertical-align: middle;
-      box-shadow: 0 1px 0 var(--border);
-    }
+		thead th {
+			position: sticky;
+			top: 0;
+			z-index: 40;
+			background: var(--panel-2);
+			color: var(--text);
+			font-weight: 700;
+			font-size: 13px;
+			text-align: center;
+			vertical-align: middle;
+			box-shadow: 0 1px 0 var(--border);
+		}
 
-    th,
-    td {
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 10px;
-      white-space: nowrap;
-      font-size: 13px;
-      line-height: 1.35;
-      text-align: center;
-      vertical-align: middle;
-    }
+		th,
+		td {
+			border-right: 1px solid var(--border);
+			border-bottom: 1px solid var(--border);
+			padding: 12px 10px;
+			white-space: nowrap;
+			font-size: 13px;
+			line-height: 1.35;
+			text-align: center;
+			vertical-align: middle;
+		}
 
-    thead tr:first-child th {
-      border-top: 0;
-    }
+		thead tr:first-child th {
+			border-top: 0;
+		}
 
-    tbody tr td {
-      background: var(--panel);
-    }
+		tbody tr td {
+			background: var(--panel);
+		}
 
-    tbody tr:nth-child(even) td {
-      background: var(--panel-3);
-    }
+		tbody tr:nth-child(even) td {
+			background: var(--panel-3);
+		}
 
-    tbody tr:hover td {
-      background: #243041;
-    }
+		tbody tr:hover td {
+			background: #243041;
+		}
 
-    /* First sticky column */
-    th:first-child,
-    td:first-child {
-      position: sticky;
-      left: 0;
-      min-width: 250px;
-      max-width: 250px;
-      width: 250px;
-      text-align: left;
-      font-weight: 700;
-      background: var(--panel-2);
-      z-index: 30;
-      box-shadow: 1px 0 0 var(--border);
-    }
+		/* 1st sticky column: Category */
+		th:first-child,
+		td:first-child {
+			position: sticky;
+			left: 0;
+			min-width: 180px;
+			max-width: 180px;
+			width: 180px;
+			text-align: left;
+			font-weight: 700;
+			background: var(--panel-2);
+			z-index: 30;
+			box-shadow: 1px 0 0 var(--border);
+		}
 
-    /* Second sticky column */
-    th:nth-child(2),
-    td:nth-child(2) {
-      position: sticky;
-      left: 250px;
-      min-width: 240px;
-      max-width: 240px;
-      width: 240px;
-      text-align: left;
-      font-weight: 600;
-      background: var(--panel-2);
-      z-index: 31;
-      box-shadow: 1px 0 0 var(--border);
-    }
+		/* 2nd sticky column: Feature */
+		th:nth-child(2),
+		td:nth-child(2) {
+			position: sticky;
+			left: 180px;
+			min-width: 260px;
+			max-width: 260px;
+			width: 260px;
+			text-align: left;
+			font-weight: 700;
+			background: var(--panel-2);
+			z-index: 31;
+			box-shadow: 1px 0 0 var(--border);
+		}
 
-    /* Top-left corner cells above everything */
-    thead th:first-child,
-    thead th:nth-child(2) {
-      z-index: 50;
-      background: #1b222c;
-    }
+		/* 3rd sticky column: Stack / Tools */
+		th:nth-child(3),
+		td:nth-child(3) {
+			position: sticky;
+			left: 440px;
+			min-width: 240px;
+			max-width: 240px;
+			width: 240px;
+			text-align: left;
+			font-weight: 600;
+			background: var(--panel-2);
+			z-index: 32;
+			box-shadow: 1px 0 0 var(--border);
+		}
 
-    tbody tr:nth-child(even) td:first-child,
-    tbody tr:nth-child(even) td:nth-child(2),
-    tbody tr:hover td:first-child,
-    tbody tr:hover td:nth-child(2) {
-      background: var(--panel-2);
-    }
+		/* Top-left corner cells above everything */
+		thead th:first-child,
+		thead th:nth-child(2),
+		thead th:nth-child(3) {
+			z-index: 50;
+			background: #1b222c;
+		}
 
-    .feature-col {
-      color: var(--text);
-    }
+		tbody tr:nth-child(even) td:first-child,
+		tbody tr:nth-child(even) td:nth-child(2),
+		tbody tr:nth-child(even) td:nth-child(3),
+		tbody tr:hover td:first-child,
+		tbody tr:hover td:nth-child(2),
+		tbody tr:hover td:nth-child(3) {
+			background: var(--panel-2);
+		}
 
-    .tools-col {
-      color: var(--muted);
-    }
+		.category-col {
+			color: var(--accent);
+			letter-spacing: 0.02em;
+		}
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 34px;
-      height: 28px;
-      padding: 0 8px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 13px;
-      margin: 0 auto;
-    }
+		.feature-col {
+			color: var(--text);
+		}
 
-    .ok {
-      background: var(--ok-bg);
-      color: var(--ok-text);
-    }
+		.tools-col {
+			color: var(--muted);
+		}
 
-    .todo {
-      background: var(--todo-bg);
-      color: var(--todo-text);
-    }
+		.status {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 34px;
+			height: 28px;
+			padding: 0 8px;
+			border-radius: 999px;
+			font-weight: 700;
+			font-size: 13px;
+			margin: 0 auto;
+		}
 
-    .no {
-      background: var(--no-bg);
-      color: var(--no-text);
-    }
+		.ok {
+			background: var(--ok-bg);
+			color: var(--ok-text);
+		}
 
-    .project-head {
-      min-width: 150px;
-      max-width: 150px;
-      width: 150px;
-    }
+		.todo {
+			background: var(--todo-bg);
+			color: var(--todo-text);
+		}
 
-    .footnote {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-    }
+		.no {
+			background: var(--no-bg);
+			color: var(--no-text);
+		}
 
-    @media (max-width: 900px) {
-      body {
-        padding: 12px;
-      }
+		.gpu {
+			background: var(--gpu-bg);
+			color: var(--gpu-text);
+		}
 
-      .title {
-        font-size: 24px;
-      }
+		.project-head {
+			min-width: 150px;
+			max-width: 150px;
+			width: 150px;
+		}
 
-      .subtitle {
-        font-size: 14px;
-      }
+		.footnote {
+			margin-top: 14px;
+			color: var(--muted);
+			font-size: 12px;
+			line-height: 1.5;
+		}
 
-      th:first-child,
-      td:first-child {
-        min-width: 210px;
-        max-width: 210px;
-        width: 210px;
-      }
+		@media (max-width: 900px) {
+			body {
+				padding: 12px;
+			}
 
-      th:nth-child(2),
-      td:nth-child(2) {
-        left: 210px;
-        min-width: 200px;
-        max-width: 200px;
-        width: 200px;
-      }
-    }
-  </style>
+			.title {
+				font-size: 24px;
+			}
+
+			.subtitle {
+				font-size: 14px;
+			}
+
+			th:first-child,
+			td:first-child {
+				min-width: 150px;
+				max-width: 150px;
+				width: 150px;
+			}
+
+			th:nth-child(2),
+			td:nth-child(2) {
+				left: 150px;
+				min-width: 220px;
+				max-width: 220px;
+				width: 220px;
+			}
+
+			th:nth-child(3),
+			td:nth-child(3) {
+				left: 370px;
+				min-width: 210px;
+				max-width: 210px;
+				width: 210px;
+			}
+		}
+	</style>
 </head>
 <body>
-  <div class="page">
-    <div class="header">
-      <h1 class="title">Engineering & MLOps Stack Across Projects</h1>
-      <p class="subtitle">
-        Sticky header + frozen first two columns for easier comparison across portfolio projects.
-      </p>
-    </div>
+	<div class="page">
+		<div class="header">
+			<h1 class="title">Engineering &amp; MLOps Stack Across Projects</h1>
+			<p class="subtitle">
+				Sticky header + frozen first three columns for easier comparison across portfolio projects.
+			</p>
+		</div>
 
-    <div class="legend">
-      <div class="legend-item"><span class="badge badge-ok">✔</span> Implemented</div>
-      <div class="legend-item"><span class="badge badge-todo">🟡</span> Planned / TODO</div>
-      <div class="legend-item"><span class="badge badge-no">✖</span> Not required</div>
-      <div class="legend-item"><span class="badge badge-gpu">⚡</span> GPU strongly recommended</div>
-    </div>
+		<div class="legend">
+			<div class="legend-item"><span class="badge badge-ok">✔</span> Implemented</div>
+			<div class="legend-item"><span class="badge badge-todo">🟡</span> Planned / TODO</div>
+			<div class="legend-item"><span class="badge badge-no">✖</span> Not required</div>
+			<div class="legend-item"><span class="badge badge-gpu">⚡</span> GPU strongly recommended</div>
+		</div>
 
-    <div class="table-shell">
-      <table>
-        <thead>
-          <tr>
-            <th class="feature-col">Feature</th>
-            <th class="tools-col">Stack / Tools</th>
-            <th class="project-head">OCR</th>
-            <th class="project-head">doc-classification</th>
-            <th class="project-head">icd10-prediction</th>
-            <th class="project-head">mesh-semantic-expansion</th>
-            <th class="project-head">clinical-ner</th>
-            <th class="project-head">lab-clustering</th>
-            <th class="project-head">autonomous-ai-platform</th>
-            <th class="project-head">llm-proxy-gateway</th>
-            <th class="project-head">rag-drive-gcp</th>
-            <th class="project-head">local-finetuning</th>
-            <th class="project-head">local-quantization</th>
-            <th class="project-head">traffic-prediction</th>
-            <th class="project-head">data-deduplication</th>
-            <th class="project-head">monitoring-api-analytics</th>
-          </tr>
-        </thead>
+		<div class="table-shell">
+			<table>
+				<thead>
+					<tr>
+						<th class="category-col">Category</th>
+						<th class="feature-col">Feature</th>
+						<th class="tools-col">Stack / Tools</th>
+						<th class="project-head">OCR</th>
+						<th class="project-head">doc-classification</th>
+						<th class="project-head">icd10-prediction</th>
+						<th class="project-head">mesh-semantic-expansion</th>
+						<th class="project-head">clinical-ner</th>
+						<th class="project-head">lab-clustering</th>
+						<th class="project-head">autonomous-ai-platform</th>
+						<th class="project-head">llm-proxy-gateway</th>
+						<th class="project-head">rag-drive-gcp</th>
+						<th class="project-head">local-finetuning</th>
+						<th class="project-head">local-quantization</th>
+						<th class="project-head">traffic-prediction</th>
+						<th class="project-head">data-deduplication</th>
+						<th class="project-head">monitoring-api-analytics</th>
+					</tr>
+				</thead>
 
-        <tbody>
-          <tr>
-            <td class="feature-col">Containerization</td>
-            <td class="tools-col">Docker</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+				<tbody>
+					<tr>
+						<td class="category-col">INFRASTRUCTURE</td>
+						<td class="feature-col">Containerization</td>
+						<td class="tools-col">Docker</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Container orchestration</td>
-            <td class="tools-col">Kubernetes</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">INFRASTRUCTURE</td>
+						<td class="feature-col">Container orchestration</td>
+						<td class="tools-col">Kubernetes</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">GPU acceleration</td>
-            <td class="tools-col">CUDA / vLLM</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔⚡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔⚡</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status no">✖</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">INFRASTRUCTURE</td>
+						<td class="feature-col">GPU acceleration</td>
+						<td class="tools-col">CUDA / vLLM</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status gpu">✔⚡</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status gpu">✔⚡</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Secrets management</td>
-            <td class="tools-col">.env / vault</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">INFRASTRUCTURE</td>
+						<td class="feature-col">Secrets management</td>
+						<td class="tools-col">.env / vault</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">API security</td>
-            <td class="tools-col">JWT / API keys</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">INFRASTRUCTURE</td>
+						<td class="feature-col">API security</td>
+						<td class="tools-col">JWT / API keys</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">CI/CD pipelines</td>
-            <td class="tools-col">GitHub Actions / GitLab CI</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">INFRASTRUCTURE</td>
+						<td class="feature-col">Access control / RBAC</td>
+						<td class="tools-col">OAuth2 / roles</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Orchestration pipelines</td>
-            <td class="tools-col">Airflow</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">DATA QUALITY</td>
+						<td class="feature-col">Data validation</td>
+						<td class="tools-col">Pydantic / Pandera</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Batch inference pipelines</td>
-            <td class="tools-col">Airflow / Pandas / PySpark</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">DATA QUALITY</td>
+						<td class="feature-col">Data consistency</td>
+						<td class="tools-col">cross-source / business rules</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Streaming / real-time inference</td>
-            <td class="tools-col">Kafka / FastAPI / Redis</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">DATA QUALITY</td>
+						<td class="feature-col">Anomaly detection</td>
+						<td class="tools-col">z-score / IQR</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Auto-retraining pipelines</td>
-            <td class="tools-col">Airflow / MLflow / drift triggers</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">DATA QUALITY</td>
+						<td class="feature-col">Data drift detection</td>
+						<td class="tools-col">Evidently</td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Experiment tracking</td>
-            <td class="tools-col">MLflow</td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">DATA QUALITY</td>
+						<td class="feature-col">Drift monitoring</td>
+						<td class="tools-col">Evidently / metrics</td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Model registry</td>
-            <td class="tools-col">MLflow Model Registry</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">DATA QUALITY</td>
+						<td class="feature-col">Data contracts</td>
+						<td class="tools-col">schema validation / evolution</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Data versioning</td>
-            <td class="tools-col">DVC</td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">CI/CD pipelines</td>
+						<td class="tools-col">GitHub Actions / GitLab CI</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Data lineage / provenance</td>
-            <td class="tools-col">DVC / MLflow</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Orchestration pipelines</td>
+						<td class="tools-col">Airflow</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Feature store</td>
-            <td class="tools-col">Feast / Redis / BigQuery</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Data ingestion</td>
+						<td class="tools-col">APIs / ETL / connectors</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Object models</td>
-            <td class="tools-col">Pydantic / dataclasses</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Feature engineering pipelines</td>
+						<td class="tools-col">transformations / feature pipelines</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Config structuring</td>
-            <td class="tools-col">Pydantic / dataclasses</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Training-serving consistency</td>
+						<td class="tools-col">offline vs online features</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Error handling</td>
-            <td class="tools-col">exceptions / guards</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Batch inference pipelines</td>
+						<td class="tools-col">Airflow / Pandas / PySpark</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Structured logging</td>
-            <td class="tools-col">Python logging</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Real-time inference</td>
+						<td class="tools-col">Kafka / FastAPI / Redis</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Testing</td>
-            <td class="tools-col">pytest</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Model serving</td>
+						<td class="tools-col">FastAPI / BentoML / vLLM</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Data validation</td>
-            <td class="tools-col">Pydantic / Pandera</td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Auto-retraining pipelines</td>
+						<td class="tools-col">Airflow / MLflow / drift triggers</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Data consistency</td>
-            <td class="tools-col">cross-source / business rules</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Scalability &amp; performance</td>
+						<td class="tools-col">load testing / autoscaling</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Anomaly detection</td>
-            <td class="tools-col">z-score / IQR</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Error handling</td>
+						<td class="tools-col">exceptions / guards</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Data drift detection</td>
-            <td class="tools-col">Evidently</td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Testing</td>
+						<td class="tools-col">pytest</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Data & model drift monitoring</td>
-            <td class="tools-col">Evidently / metrics</td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Object models</td>
+						<td class="tools-col">Pydantic / dataclasses</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Model validation (offline)</td>
-            <td class="tools-col">F1 / RMSE / precision / recall</td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">PIPELINES &amp; DEPLOYMENT</td>
+						<td class="feature-col">Config structuring</td>
+						<td class="tools-col">Pydantic / dataclasses</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Model validation (business)</td>
-            <td class="tools-col">domain / stakeholder checks</td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">ML LIFECYCLE</td>
+						<td class="feature-col">Experiment tracking</td>
+						<td class="tools-col">MLflow</td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status no">✖</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Overfitting checks</td>
-            <td class="tools-col">CV / holdout / regularization</td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status no">✖</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">ML LIFECYCLE</td>
+						<td class="feature-col">Model registry</td>
+						<td class="tools-col">MLflow Model Registry</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">End-to-end pipeline validation</td>
-            <td class="tools-col">source → API / dashboard</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">ML LIFECYCLE</td>
+						<td class="feature-col">Data versioning</td>
+						<td class="tools-col">DVC</td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status no">✖</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Monitoring & observability</td>
-            <td class="tools-col">Prometheus / Grafana</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status ok">✔</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">ML LIFECYCLE</td>
+						<td class="feature-col">Data lineage / provenance</td>
+						<td class="tools-col">DVC / MLflow</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Alerting & incident response</td>
-            <td class="tools-col">Prometheus / Alertmanager / Grafana</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
+					<tr>
+						<td class="category-col">ML LIFECYCLE</td>
+						<td class="feature-col">Feature store</td>
+						<td class="tools-col">Feast / Redis / BigQuery</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
 
-          <tr>
-            <td class="feature-col">Model explainability</td>
-            <td class="tools-col">SHAP / LIME / sklearn</td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-            <td><span class="status todo">🟡</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+					<tr>
+						<td class="category-col">MODEL VALIDATION</td>
+						<td class="feature-col">Model validation (offline)</td>
+						<td class="tools-col">F1 / RMSE / precision / recall</td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+					</tr>
 
-    <div class="footnote">
-      Use horizontal scroll to compare projects, while keeping the first two columns fixed for readability.
-    </div>
-  </div>
+					<tr>
+						<td class="category-col">MODEL VALIDATION</td>
+						<td class="feature-col">Model validation (business)</td>
+						<td class="tools-col">domain / stakeholder checks</td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status no">✖</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">MODEL VALIDATION</td>
+						<td class="feature-col">A/B testing</td>
+						<td class="tools-col">online experiments</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">MODEL VALIDATION</td>
+						<td class="feature-col">Reproducibility</td>
+						<td class="tools-col">environments / deterministic pipelines</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">MODEL VALIDATION</td>
+						<td class="feature-col">Underfitting checks</td>
+						<td class="tools-col">bias / model complexity</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">MODEL VALIDATION</td>
+						<td class="feature-col">Overfitting checks</td>
+						<td class="tools-col">CV / holdout / regularization</td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status no">✖</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">MODEL VALIDATION</td>
+						<td class="feature-col">Model explainability</td>
+						<td class="tools-col">SHAP / LIME / sklearn</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">OBSERVABILITY</td>
+						<td class="feature-col">Structured logging</td>
+						<td class="tools-col">Python logging</td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">OBSERVABILITY</td>
+						<td class="feature-col">Monitoring &amp; observability</td>
+						<td class="tools-col">Prometheus / Grafana</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status ok">✔</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">OBSERVABILITY</td>
+						<td class="feature-col">Alerting &amp; incident response</td>
+						<td class="tools-col">Alertmanager</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
+
+					<tr>
+						<td class="category-col">OBSERVABILITY</td>
+						<td class="feature-col">Cost monitoring</td>
+						<td class="tools-col">tokens / GPU / API usage</td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status ok">✔</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+						<td><span class="status todo">🟡</span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="footnote">
+			Use horizontal scroll to compare projects, while keeping the first three columns fixed for readability.
+		</div>
+	</div>
 </body>
 </html>
